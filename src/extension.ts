@@ -53,8 +53,8 @@ function analyzeLogDocument(document: vscode.TextDocument) {
 	const decorations: vscode.DecorationOptions[] = [];
 
 	const logHeaderRegex = /^(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2},\d{3})\s-\s[A-Z]+\s-\s/;
-	const startAction = /\b(inici[oa]|iniciad[oa]|iniciando|importando|salvando)\b/i;
-	const endAction = /\b(final|finalizad[oa]|finalizando|salva)\b/i;
+	const startAction = /\b(inici[oa]|iniciad[oa]|iniciando)\b/i;
+	const endAction = /\b(final|finalizad[oa]|finalizando)\b/i;
 
 	interface BlockStart {
 		line: number;
@@ -78,7 +78,7 @@ function analyzeLogDocument(document: vscode.TextDocument) {
 		const cleanMessage = message.replace(/[<>\.\!]/g, ' ');
 
 		const subjectWords = cleanMessage
-			.replace(/\b(inici[oa]|iniciad[oa]|iniciando|importando|salvando|final|finalizad[oa]|finalizando|salva)\b/g, ' ')
+			.replace(/\b(inici[oa]|iniciad[oa]|iniciando|final|finalizad[oa]|finalizando)\b/g, ' ')
 			.split(/\s+/)
 			.filter(w => w.length > 2);
 

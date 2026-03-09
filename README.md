@@ -22,7 +22,7 @@ Chega de se perder em arquivos com 50.000 linhas.
 ### 3. 🎯 Detecção de Padrões
 Funciona nativamente com logs que utilizam marcadores visuais ou verbos de ação.
 * **Marcadores:** `>>>>>>>>>>>>>>>>>>>` e `<<<<<<<<<<<<<<<<<<<`
-* **Verbos:** Detecta automaticamente palavras-chave como `Iniciando`, `Finalizando`, `Salvando`, `Importando`, entre outros.
+* **Verbos:** Detecta automaticamente palavras-chave como `Iniciando`, `Finalizando`, entre outros.
 
 ---
 

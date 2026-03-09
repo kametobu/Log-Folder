@@ -107,11 +107,19 @@ function analyzeLogDocument(document: vscode.TextDocument) {
 				if (durationMs < 1000) {
 					timeLabel = `${durationMs}ms`;
 				} else if (durationMs < 60000) {
+					// Menos de 1 minuto
 					timeLabel = `${(durationMs / 1000).toFixed(2)}s`;
-				} else {
+				} else if (durationMs < 3600000) {
+					// Menos de 1 hora
 					const mins = Math.floor(durationMs / 60000);
-					const secs = ((durationMs % 60000) / 1000).toFixed(0);
+					const secs = Math.floor((durationMs % 60000) / 1000);
 					timeLabel = `${mins}m ${secs}s`;
+				} else {
+					// 1 hora ou mais
+					const hours = Math.floor(durationMs / 3600000);
+					const mins = Math.floor((durationMs % 3600000) / 60000);
+					const secs = Math.floor((durationMs % 60000) / 1000);
+					timeLabel = `${hours}h ${mins}m ${secs}s`;
 				}
 
 				// Cria a decoração (A caixinha de tempo)

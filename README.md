@@ -1,27 +1,48 @@
-# Log Folder
+# 📂 Log Folder
 
-Uma extensão simples e poderosa para o VS Code que adiciona a funcionalidade de **Code Folding** (dobradura de código) inteligente em arquivos de log.
+Uma extensão essencial para desenvolvedores e analistas que trabalham com arquivos de log extensos. O **Log Folder** transforma logs de texto plano em uma estrutura hierárquica, legível e interativa dentro do VS Code.
 
-## 🚀 Funcionalidades
+![Logo da Extensão](images/icon.png)
 
-*   **Dobradura Inteligente:** Reconhece blocos de início e fim no seu log, permitindo colapsar seções inteiras para facilitar a leitura de arquivos gigantescos.
-*   **Agrupamento por Assunto:** Analisa o contexto da mensagem (ex: liga "importando table_teste" com "finalizado importacao table_teste") para garantir que a dobra seja exata, mesmo se houver logs paralelos ou cruzados.
-*   **Foco no Conteúdo:** Pula automaticamente o cabeçalho de timestamp e nível de log (`YYYY-MM-DD HH:MM:SS - LEVEL -`) para focar na ação real.
-*   **Suporte a Marcadores:** Lida perfeitamente com marcadores visuais no texto, como `>>>>>>>>>>>>>>>>>>>` e `<<<<<<<<<<<<<<<<<<<`.
+## ✨ Funcionalidades Principais
 
-## 📦 Como Usar
+### 1. ⏱️ Cálculo Automático de Tempo (Novo!)
+A extensão analisa os *timestamps* do seu log e calcula exatamente quanto tempo cada etapa demorou para rodar.
+* **Visualização Instantânea:** Uma etiqueta (badge) elegante aparece ao lado da linha de início.
+* **Escala Inteligente:** Formata o tempo automaticamente para milissegundos (`ms`), segundos (`s`), minutos (`m s`) ou horas (`h m s`), dependendo da duração.
+    * *Ex:* `⏱️ 245ms`
+    * *Ex:* `⏱️ 1m 15s`
 
-1. Abra qualquer arquivo com a extensão `.log` no seu VS Code.
-2. Passe o mouse sobre a numeração das linhas. As setinhas de colapsar (`v` e `>`) aparecerão automaticamente nos pontos de início de um processo.
-3. Você também pode usar os atalhos padrão do VS Code: 
-   * `Ctrl + Shift + [` para dobrar
-   * `Ctrl + Shift + ]` para expandir.
+### 2. 📁 Code Folding Inteligente (Dobradura)
+Chega de se perder em arquivos com 50.000 linhas.
+* **Agrupamento por Contexto:** A extensão lê o conteúdo da mensagem (ex: "Importando table_X") e procura o fechamento correspondente ("Finalizado table_X"), permitindo dobras precisas mesmo em logs cruzados ou assíncronos.
+* **Limpeza Visual:** Ignora cabeçalhos de data/hora na hora de identificar os blocos, focando na ação real.
+* **Fim Visível:** Mantém a linha de conclusão visível quando possível, para que você saiba como o processo terminou sem precisar abrir o bloco.
 
-## ⚙️ Palavras-chave Reconhecidas
-
-A extensão identifica blocos baseando-se em ações. Algumas das palavras suportadas (ignorando maiúsculas e minúsculas) incluem:
-*   **Início:** *iniciando, iniciado, inicio, inicia, importando, salvando*
-*   **Fim:** *finalizando, finalizado, final, salva*
+### 3. 🎯 Detecção de Padrões
+Funciona nativamente com logs que utilizam marcadores visuais ou verbos de ação.
+* **Marcadores:** `>>>>>>>>>>>>>>>>>>>` e `<<<<<<<<<<<<<<<<<<<`
+* **Verbos:** Detecta automaticamente palavras-chave como `Iniciando`, `Finalizando`, `Salvando`, `Importando`, entre outros.
 
 ---
-*Desenvolvido para facilitar a análise visual de logs complexos.*
+
+## 🚀 Como Usar
+
+1.  Abra qualquer arquivo com a extensão `.log`.
+2.  Aguarde um instante: as setinhas de dobrar aparecerão na margem esquerda e os tempos de execução aparecerão à direita das linhas de início.
+3.  Use os atalhos do VS Code para navegar:
+    * **Dobrar tudo:** `Ctrl + K` depois `Ctrl + 0`
+    * **Expandir tudo:** `Ctrl + K` depois `Ctrl + J`
+    * **Dobrar bloco atual:** `Ctrl + Shift + [`
+
+## ⚙️ Requisitos de Formato
+
+Para que o **Cálculo de Tempo** funcione corretamente, seus logs devem iniciar com um timestamp no padrão ISO/Data, comum em logs Python/Java:
+
+`YYYY-MM-DD HH:MM:SS,MMM - NIVEL - Mensagem...`
+
+Exemplos suportados:
+```log
+2026-02-27 12:25:02,853 - INFO - >>> Iniciando script
+...
+2026-02-27 12:25:05,100 - INFO - <<< Finalizando script

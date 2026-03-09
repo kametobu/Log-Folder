@@ -2,8 +2,14 @@
   "name": "log-folder",
   "displayName": "log-folder",
   "description": "Code folding para arquivos de log",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "KameTobu",
+  "icon": "images/icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kametobu/Log-Folder"
+  },
   "engines": {
     "vscode": "^1.109.0"
   },
